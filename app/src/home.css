@@ -1,0 +1,42 @@
+#home {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  border-bottom: 0.2em solid white;
+  height: 10%;
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  height: 91%;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.icon {
+  width: 3em;
+  height: 3em;
+  color: white;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+}
+
+.icon:hover {
+  transform: rotate(360deg);
+}
+
+.icon:active {
+  width: 3.2em;
+  height: 3.2em;
+}

@@ -1,0 +1,169 @@
+# ========================
+# Terraform
+# ========================
+# Local Terraform directories
+**/.terraform/*
+**/.terraform.lock.hcl
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.backup
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs and backup files
+crash.log
+crash.log.*
+
+# Sensitive files and variables
+terraform.tfvars
+*.tfvars
+terraform.tfvars.json
+secret.auto.tfvars
+*.auto.tfvars
+
+# Generated plan files
+*.tfplan
+
+# Terraform provider/plugins cache
+.terraform/plugins/
+
+# ========================
+# Go (Golang)
+# ========================
+# Binaries for programs and plugins
+/bin/
+/obj/
+/out/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Build output
+/build/
+**/vendor/
+
+# Go module files (keep go.mod and go.sum tracked; ignore vendor and cache)
+vendor/
+Godeps/
+
+# Test binary
+*.test
+
+# Coverage and profiling
+*.coverprofile
+profile.out
+*.pprof
+
+# Go workspace
+*.cache
+*.cache/
+.idea/
+.vscode/
+
+# Dependency download cache
+/pkg/mod/
+# Local Go build cache
+$GOPATH/pkg/mod/
+# Optional: GoLand specific
+.idea/
+
+# ========================
+# Node / React
+# ========================
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+public/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Lockfiles (track one per project; adjust if you want to ignore)
+# package-lock.json
+# yarn.lock
+
+# Parcel / bundler cache
+.cache/
+.cache-loader/
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+
+# ========================
+# Common IDEs / Editors
+# ========================
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+*.iml
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*~
+
+# Mac / Windows
+.DS_Store
+Thumbs.db
+
+# ========================
+# Secrets, keys, and credentials
+# ========================
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.jks
+*.pfx
+*.mobileprovision
+*.env
+*.secret
+
+# JSON creds (service account keys)
+*.json
+
+# ========================
+# Misc
+# ========================
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Coverage reports
+coverage/
+coverage/*
+
