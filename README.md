@@ -19,24 +19,34 @@ Points of interest:
 - Container build is done as a  “scratch” container which wraps the executable only in OCI metadata
   without any underlying OS or inner-container dependencies. This creates a very tight, small and cost effective image.
 
-
 ## The Infrastructure
 
 Application deployment is done using AWS ECS with Fargate
 Provided "diagram.png" shows the underlying infrastructure resources for this deployent
-
 Terraform is used throughout to build the resources with IaC principles
+Terraform state is managed by S3 bucket
 
 ### Resources
 
-The resources built by the Terraform:
+Terraform built resources:
 - S3  - Terraform state management
-- ECS - For scaling and flexxible deployment
+- ECS - For scaling and flexible deployment
 - ALB - Application load balancer
 - ECR - Container registry
 - VPC - Public facing subnet
 - IAM, SGs - Provide various roles to run the application in a secure manner
 
+## CI/CD
+
+Deployment automation is done with GitHub Actions
+
+The Actions:
+- Create - creates the infrastructure with Terraform
+- Destroy - destroys the infrustructure
+- Build - builds application image and pushes it to the ECR registry
+
+All three actions are triggered by "workflow_dispatch" event (manual trigger) for simplicity
+Outside of the testing scope, the "build" action should be configured for push event
 
 ## Costs
 
