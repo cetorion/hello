@@ -17,18 +17,15 @@ jobs:
       - name: Login to ECR
         id: ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: List Files
-        working-directory: app
-        run: ls -la
       - name: Build and push
         id: build
         working-directory: app
         run: |
-          REPO="${{ steps.ecr.outputs.registry }}/${{ github.repository_owner }}/hello"
+          REPO="${{ steps.ecr.outputs.registry }}/hello"
           IMAGE="${REPO}:${{ github.sha }}"
           docker build -t "$IMAGE" .
-          # docker push "$IMAGE"
+          docker push "$IMAGE"
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
       - name: Set output
         id: set_image
-        run: echo "::set-output name=image_uri::${{ steps.build.outputs.image }}"
+        run: echo "image_uri=${{ steps.build.outputs.image }}" >> $GITHUB_OUTPUT
