@@ -6,6 +6,9 @@ RUN apk add --no-cache go git curl nodejs yarn
 WORKDIR /src
 COPY . .
 
+# Debug
+RUN ls
+
 RUN yarn install
 RUN yarn build
 RUN mv dist/ server/
