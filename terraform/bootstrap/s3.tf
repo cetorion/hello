@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "tfstate" {
-  bucket        = local.bucket_name
+  bucket        = var.bucket_name
   force_destroy = true
 
   tags = {
-    Name = "terraform-state-${local.bucket_name}"
+    Name = var.bucket_name
   }
 }
 

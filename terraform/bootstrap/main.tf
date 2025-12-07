@@ -12,8 +12,3 @@ provider "aws" {
   region  = var.aws_region
   profile = var.aws_profile
 }
-
-resource "random_id" "suffix" {
-  byte_length = 8
-}
-

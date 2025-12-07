@@ -8,12 +8,7 @@ variable "aws_profile" {
   default = "devine"
 }
 
-variable "bucket_prefix" {
+variable "bucket_name" {
   type    = string
-  default = "terraform-state"
-}
-
-variable "dynamodb_table_name" {
-  type    = string
-  default = "terraform-locks"
+  default = "terraform-state-bc00d4c914446324"
 }
