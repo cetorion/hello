@@ -88,7 +88,6 @@ out/
 .next/
 .nuxt/
 .cache/
-public/
 
 # Logs
 npm-debug.log*
@@ -152,9 +151,6 @@ Thumbs.db
 *.env
 *.secret
 
-# JSON creds (service account keys)
-*.json
-
 # ========================
 # Misc
 # ========================
@@ -166,4 +162,3 @@ temp/
 # Coverage reports
 coverage/
 coverage/*
-
