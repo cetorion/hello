@@ -1,6 +1,6 @@
 variable "aws_profile" {
-  type        = string
-  default     = "devine"
+  type    = string
+  default = "devine"
 }
 
 variable "aws_region" {

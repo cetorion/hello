@@ -1,10 +1,10 @@
 #!/bin/bash
 
-BUCKET=$(terraform output -raw bucket_name)
-TABLE=$(terraform output -raw dynamodb_table_name)
-REGION=$(terraform output -raw aws_region)
+BUCKET=$(cd bootstrap && terraform output -raw bucket_name)
+TABLE=$(cd bootstrap && terraform output -raw dynamodb_table_name)
+REGION=$(cd bootstrap && terraform output -raw aws_region)
 
-cat >./infra/backend.hcl <<EOF
+cat >infra/backend.hcl <<EOF
 bucket         = "${BUCKET}"
 key            = "env/test/terraform.tfstate"
 region         = "${REGION}"

@@ -1,5 +1,5 @@
-bucket         = "terraform-state-84675756a2bd845e"
+bucket         = "terraform-state-bc00d4c914446324"
+use_lockfile   = true
 key            = "env/test/terraform.tfstate"
 region         = "ap-southeast-2"
-dynamodb_table = "terraform-locks"
 encrypt        = true
