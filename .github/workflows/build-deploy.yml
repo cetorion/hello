@@ -18,10 +18,11 @@ jobs:
         id: ecr
         uses: aws-actions/amazon-ecr-login@v1
       - name: List Files
+        working-directory: app
         run: ls -la
       - name: Build and push
         id: build
-        working-directory: ./app
+        working-directory: app
         run: |
           REPO="${{ steps.ecr.outputs.registry }}/${{ github.repository_owner }}/hello"
           IMAGE="${REPO}:${{ github.sha }}"
