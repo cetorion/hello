@@ -1,8 +1,8 @@
-name: Create
+name: Destroy
 on:
   workflow_dispatch: {}
 jobs:
-  create:
+  destroy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,9 +20,9 @@ jobs:
         working-directory: terraform/infra
         env:
           TF_IN_AUTOMATION: true
-        run: terraform init -input=false -upgrade
-      - name: Terraform apply
+        run: terraform init -input=false -reconfigure
+      - name: Terraform destroy
         working-directory: terraform/infra
         env:
           AWS_REGION: ap-southeast-2
-        run: terraform apply -auto-approve -input=false
+        run: terraform destroy -auto-approve -input=false
