@@ -24,7 +24,5 @@ jobs:
       - name: Terraform apply
         working-directory: terraform/infra
         env:
-          TF_VAR_app_image: ${{ needs.build.outputs.image_uri }}
-          TF_VAR_tf_state_bucket: ${{ secrets.TF_STATE_BUCKET }}
           AWS_REGION: ap-southeast-2
         run: terraform apply -auto-approve -input=false
