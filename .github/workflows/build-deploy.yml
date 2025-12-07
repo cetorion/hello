@@ -19,10 +19,11 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - name: Build and push
         id: build
+        working-directory: ./app
         run: |
           REPO="${{ steps.ecr.outputs.registry }}/${{ github.repository_owner }}/hello"
           IMAGE="${REPO}:${{ github.sha }}"
-          docker build -t "$IMAGE" ./app
+          docker build -t "$IMAGE" -f Dockerfile
           # docker push "$IMAGE"
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
       - name: Set output
