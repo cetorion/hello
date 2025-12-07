@@ -1,4 +1,4 @@
-name: Build, Push, Deploy
+name: Build
 on:
   workflow_dispatch: {}
 jobs:
@@ -22,10 +22,13 @@ jobs:
         working-directory: app
         run: |
           REPO="${{ steps.ecr.outputs.registry }}/hello"
-          IMAGE="${REPO}:${{ github.sha }}"
-          docker build -t "$IMAGE" .
-          docker push "$IMAGE"
-          echo "image=$IMAGE" >> $GITHUB_OUTPUT
+          IMAGE_SHA="${REPO}:${{ github.sha }}"
+          IMAGE_LATEST="${REPO}:latest"
+          docker build -t "$IMAGE_SHA" .
+          docker push "$IMAGE_SHA"
+          docker tag "$IMAGE_SHA" "$IMAGE_LATEST"
+          docker push "$IMAGE_LATEST"
+          echo "image=$IMAGE_SHA" >> $GITHUB_OUTPUT
       - name: Set output
         id: set_image
         run: echo "image_uri=${{ steps.build.outputs.image }}" >> $GITHUB_OUTPUT
