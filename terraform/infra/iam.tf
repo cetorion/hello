@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "task_assume" {
 }
 
 resource "aws_iam_role" "task_execution" {
-  name               = "app-ecs-task-execution"
+  name               = "hello-ecs-task-execution"
   assume_role_policy = data.aws_iam_policy_document.task_assume.json
 }
 

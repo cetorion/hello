@@ -1,9 +1,9 @@
 resource "aws_ecs_cluster" "this" {
-  name = "app-cluster"
+  name = "hello-cluster"
 }
 
 resource "aws_security_group" "app_sg" {
-  name   = "app-sg"
+  name   = "hello-sg"
   vpc_id = aws_vpc.this.id
 
   ingress {
@@ -22,12 +22,12 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_cloudwatch_log_group" "ecs" {
-  name              = "/ecs/go-app"
+  name              = "/ecs/hello"
   retention_in_days = 7
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = "go-app"
+  family                   = "hello"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
@@ -35,14 +35,14 @@ resource "aws_ecs_task_definition" "app" {
   execution_role_arn       = aws_iam_role.task_execution.arn
 
   container_definitions = jsonencode([{
-    name         = "app"
+    name         = "hello"
     image        = var.app_image != "" ? var.app_image : "${aws_ecr_repository.app.repository_url}:latest"
     portMappings = [{ containerPort = 8080, protocol = "tcp" }]
     essential    = true
     logConfiguration = {
       logDriver = "awslogs"
       options = {
-        "awslogs-group"         = "/ecs/go-app"
+        "awslogs-group"         = "/ecs/hello"
         "awslogs-region"        = var.aws_region
         "awslogs-stream-prefix" = "ecs"
       }
@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "app" {
 }
 
 resource "aws_ecs_service" "app" {
-  name            = "go-app-svc"
+  name            = "hello-svc"
   cluster         = aws_ecs_cluster.this.id
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = 1
@@ -65,7 +65,7 @@ resource "aws_ecs_service" "app" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.app.arn
-    container_name   = "app"
+    container_name   = "hello"
     container_port   = 8080
   }
 

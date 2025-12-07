@@ -2,12 +2,12 @@ resource "aws_vpc" "this" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags                 = { Name = "simple-app-vpc" }
+  tags                 = { Name = "hello-vpc" }
 }
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.this.id
-  tags   = { Name = "simple-app-igw" }
+  tags   = { Name = "hello-igw" }
 }
 
 resource "aws_subnet" "public" {
@@ -16,7 +16,7 @@ resource "aws_subnet" "public" {
   cidr_block              = each.value
   availability_zone       = var.availability_zones[tonumber(each.key)]
   map_public_ip_on_launch = true
-  tags                    = { Name = "simple-app-public-${each.key}" }
+  tags                    = { Name = "hello-public-${each.key}" }
 }
 
 resource "aws_route_table" "public" {
@@ -25,7 +25,7 @@ resource "aws_route_table" "public" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
-  tags = { Name = "simple-app-public-rt" }
+  tags = { Name = "hello-public-rt" }
 }
 
 resource "aws_route_table_association" "public_assoc" {
@@ -33,4 +33,3 @@ resource "aws_route_table_association" "public_assoc" {
   subnet_id      = each.value.id
   route_table_id = aws_route_table.public.id
 }
-

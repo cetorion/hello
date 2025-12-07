@@ -18,7 +18,7 @@ resource "aws_security_group" "alb_sg" {
 }
 
 resource "aws_lb" "alb" {
-  name               = "app-alb"
+  name               = "hello-alb"
   internal           = false
   load_balancer_type = "application"
   subnets            = [for s in aws_subnet.public : s.id]
@@ -26,7 +26,7 @@ resource "aws_lb" "alb" {
 }
 
 resource "aws_lb_target_group" "app" {
-  name        = "app-tg"
+  name        = "hello-tg"
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = aws_vpc.this.id
