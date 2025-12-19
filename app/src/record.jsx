@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./record.css";
 import { useStore } from "./store.jsx";
 import { useNavigate } from "react-router-dom";
